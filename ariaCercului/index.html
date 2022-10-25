@@ -1,0 +1,48 @@
+<DOCTYPE html>
+
+<html lang="ro">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Calculeaza aria cercului</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">	
+	<div>	
+		<div class="form-group mt-5 d-flex" style="flex-direction: column;">
+			<label for="raza_cercului">Raza Cercului:</label>
+			<input type="number" id='raza_cercului' name="raza_cercului">
+		</div>
+		<button class="btn btn-success" id="calculeaza">Calculeaza Aria</button>
+	</div>
+		<h4 id="response"></h4>
+    </div>	
+</body>
+	<script>
+		const razaCercului = document.getElementById('raza_cercului');
+		const calculeazaAria = document.getElementById('calculeaza');
+		const response = document.getElementById('response');
+
+		const calculeazaAriaCercului = (element) => {
+			const PI = 3.14;
+			let razaRough = element.value;
+			if (isNaN(parseFloat(razaRough))) {
+				return null;
+			}
+			return Math.pow(parseFloat(razaRough),2) * PI;
+		};
+
+	
+		document.addEventListener("DOMContentLoaded", () => {
+			calculeazaAria.addEventListener('click', (e) => {
+				let aria = calculeazaAriaCercului(razaCercului);
+				let stringOfResponse = !aria ? `Valoarea razei este invalida.` : `Aria cercului este ${aria}.`;
+				response.innerText = stringOfResponse;
+			});
+			
+		});
+	</script>
+</html>
